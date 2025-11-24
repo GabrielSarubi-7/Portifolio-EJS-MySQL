@@ -22,7 +22,6 @@ npm start
 * `/contato` — Links
 
 ### CRUD de Projetos (também via API)
-
 * `GET /api/projetos` — lista JSON de projetos cadastrados no banco
 * `POST /projetos` — cria projeto (formulário na página)
 * `PUT /projetos/:id` — edita projeto (usa `?_method=PUT`)
