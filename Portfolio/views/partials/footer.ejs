@@ -1,0 +1,25 @@
+</main>
+<footer class="footer">
+  <div class="container">
+    <div class="contact-footer">
+      <h3>Entre em contato comigo</h3>
+      <p>Fique à vontade para me chamar nas redes ou enviar um e-mail 📩</p>
+      <div class="footer-links">
+        <a href="<%= perfil.links.linkedin %>" class="btn" target="_blank" rel="noopener">
+          <i class="devicon-linkedin-plain"></i> LinkedIn
+        </a>
+        <a href="<%= perfil.links.github %>" class="btn outline" target="_blank" rel="noopener">
+          <i class="devicon-github-original"></i> GitHub
+        </a>
+        <a href="mailto:<%= perfil.email %>" class="btn outline">
+          ✉️ E-mail
+        </a>
+      </div>
+    </div>
+    <p class="copy">© <%= new Date().getFullYear() %>
+        <%= perfil.nome %>. Todos os direitos reservados.</p>
+  </div>
+</footer>
+</body>
+
+</html>

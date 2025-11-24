@@ -1,0 +1,63 @@
+<%- include('partials/header') %>
+
+<h2>Projetos</h2>
+
+<div class="flex-head" style="margin-bottom: 1rem;">
+  <h3>Lista de projetos</h3>
+  <a href="/api/projetos" class="btn small outline">Ver JSON (GET)</a>
+</div>
+
+<div class="project-grid">
+  <% projetos.forEach(p => { %>
+    <div class="project-card">
+      <div class="project-header">
+        <h3><%= p.titulo %></h3>
+      </div>
+
+      <p class="project-desc"><%= p.descricao %></p>
+
+      <% if (p.tecnologias) { %>
+        <p class="project-tech">
+          <strong>Tecnologias:</strong> <%= p.tecnologias %>
+        </p>
+      <% } %>
+
+      <div class="project-links">
+        <% if (p.link) { %>
+          <a href="<%= p.link %>" class="btn small" target="_blank" rel="noopener noreferrer">Ver repositório</a>
+        <% } else { %>
+          <span class="muted">Sem link</span>
+        <% } %>
+
+        <details class="project-actions">
+          <summary>Editar / Excluir</summary>
+
+          <!-- EDIT (PUT) -->
+          <form class="form-inline" action="/projetos/<%= p.id %>?_method=PUT" method="POST">
+            <input type="text" name="titulo" placeholder="Título" value="<%= p.titulo %>" required>
+            <input type="text" name="descricao" placeholder="Descrição" value="<%= p.descricao %>" required>
+            <input type="text" name="tecnologias" placeholder="Tecnologias" value="<%= p.tecnologias %>">
+            <input type="text" name="link" placeholder="Link (GitHub, Deploy)" value="<%= p.link %>">
+            <button class="btn small" type="submit">Salvar</button>
+          </form>
+
+          <!-- DELETE -->
+          <form action="/projetos/<%= p.id %>?_method=DELETE" method="POST" style="margin-top:.5rem;">
+            <button class="btn small danger" type="submit">Excluir</button>
+          </form>
+        </details>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<h3 style="margin-top:2rem;">Adicionar novo projeto (POST)</h3>
+<form class="form-grid" action="/projetos" method="POST">
+  <input type="text" name="titulo" placeholder="Título" required>
+  <input type="text" name="descricao" placeholder="Descrição" required>
+  <input type="text" name="tecnologias" placeholder="Tecnologias (ex: Node.js, EJS)">
+  <input type="text" name="link" placeholder="Link (GitHub, Deploy)">
+  <button class="btn" type="submit">Adicionar</button>
+</form>
+
+<%- include('partials/footer') %>

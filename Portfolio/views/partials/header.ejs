@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="pt-br">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio | <%= perfil.nome %>
+  </title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a class="brand" href="/">Gabriel Sarubi</a>
+      <ul class="nav">
+        <li><a class="<%= pagina==='inicio' ? 'active' : '' %>" href="/">Início</a></li>
+        <li><a class="<%= pagina==='formacao' ? 'active' : '' %>" href="/formacao">Formação</a></li>
+        <li><a class="<%= pagina==='projetos' ? 'active' : '' %>" href="/projetos">Projetos</a></li>
+        <li><a class="<%= pagina==='competencias' ? 'active' : '' %>" href="/competencias">Competências</a></li>
+      </ul>
+    </div>
+  </nav>
+  <main class="container">

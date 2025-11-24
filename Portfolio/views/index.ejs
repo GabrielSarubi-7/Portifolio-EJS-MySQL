@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+
+<section class="hero-home">
+  <div class="hero-content">
+    <img src="<%= perfil.fotoUrl %>" alt="Foto de perfil de <%= perfil.nome %>" class="avatar destaque">
+
+    <div class="hero-text">
+      <h1><%= perfil.nome %></h1>
+      <p class="local"><%= perfil.local %> • <a href="mailto:<%= perfil.email %>"><%= perfil.email %></a></p>
+      <p class="titulo-destaque">Desenvolvedor Full Stack em formação</p>
+      <p class="bio"><%= perfil.bio %></p>
+
+      <div class="hero-buttons">
+        <a href="/projetos" class="btn">Ver projetos</a>
+        <a href="<%= perfil.links.github %>" target="_blank" class="btn outline">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

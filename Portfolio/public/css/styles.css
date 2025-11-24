@@ -1,0 +1,1198 @@
+/* ======================================
+   1. VARIÁVEIS GLOBAIS E CONFIGURAÇÃO BASE
+   ====================================== */
+:root {
+  /* Cores */
+  --bg: #0f172a;
+  --bg-alt: #111827;
+  --card: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --primary: #22d3ee;
+  --danger: #ef4444;
+  --border: #1f2937;
+
+  /* Sombras */
+  --shadow-sm: 0 3px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 6px 14px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 0 30px rgba(34, 211, 238, 0.04);
+
+  /* Transições e Gradientes */
+  --transition-base: all 0.25s ease;
+  --gradient-card: linear-gradient(145deg, #111827, #0f172a);
+  --gradient-hover: linear-gradient(145deg, #16213d, #0f172a);
+}
+
+/* Reset Global */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Configuração Base do HTML e Body */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  /* Fundo global com textura */
+  background-color: #111827;
+  background-image: url("https://www.transparenttextures.com/patterns/binding-dark.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: auto;
+  background-image:
+  radial-gradient(circle at 50% 0%, rgba(34,211,238,0.08), transparent 70%),
+  url("https://www.transparenttextures.com/patterns/binding-dark.png");
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Inter, Arial, sans-serif;
+}
+/* ======================================
+   2. NAVEGAÇÃO PRINCIPAL
+   ====================================== */
+
+/* Barra de Navegação Fixa */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: rgba(17, 24, 39, .85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  z-index: 9999;
+  padding: 0.75rem 0;
+}
+
+/* Container da Navbar */
+.navbar .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Logo/Marca */
+.brand {
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  margin-right: 1rem;
+  font-size: 1.15rem;
+}
+
+/* Lista de Navegação */
+.nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Links de Navegação */
+.nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: .5rem .75rem;
+  border-radius: .5rem;
+  transition: 0.2s;
+}
+
+/* Estados dos Links */
+.nav a.active,
+.nav a:hover {
+  color: var(--text);
+  background: #0b1220;
+}
+
+/* ======================================
+   3. LAYOUT PRINCIPAL
+   ====================================== */
+
+/* Container Principal */
+main.container {
+  max-width: 1000px;
+  margin: 3.5rem auto 0;
+  /* Espaço para a navbar fixa */
+  padding: 1.25rem;
+}
+
+/* ======================================
+   4. SEÇÃO HERO
+   ====================================== */
+
+/* Grid da Seção Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+/* Imagem de Avatar */
+.avatar {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 1rem;
+  border: 2px solid var(--border);
+  background: #0b1220;
+}
+
+/* ======================================
+   5. BOTÕES E LINKS
+   ====================================== */
+
+/* Container de Links */
+.links {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-top: .5rem;
+}
+
+/* Botão Base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: .5rem .9rem;
+  border-radius: .6rem;
+  border: 1px solid transparent;
+  background: var(--primary);
+  color: #001018;
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition-base);
+}
+
+/* Efeito Hover do Botão */
+.btn:hover {
+  transform: translateY(-3px);
+  animation: pulse 0.5s ease-in-out;
+}
+
+/* Variante: Botão Pequeno */
+.btn.small {
+  padding: .35rem .6rem;
+  font-size: .9rem;
+}
+
+/* Variante: Botão Outline */
+.btn.outline {
+  background: transparent;
+  border-color: var(--primary);
+  color: var(--text);
+}
+
+.btn.outline:hover {
+  background: var(--primary);
+  color: #001018;
+}
+
+/* Variante: Botão de Perigo */
+.btn.danger {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--text);
+}
+
+.btn.danger:hover {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+/* ======================================
+   6. COMPONENTES REUTILIZÁVEIS
+   ====================================== */
+
+/* Texto Muted */
+.muted {
+  color: var(--muted);
+}
+
+/* Grid de Cards */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: .75rem 0;
+}
+
+/* Card Individual */
+.card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Efeito Hover do Card */
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+  background: var(--gradient-hover);
+}
+
+/* Lista de Pills */
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: .75rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Pill Individual */
+.pill {
+  padding: .4rem .7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #0b1220;
+  color: var(--text);
+  transition: var(--transition-base);
+}
+
+/* ======================================
+   7. RODAPÉ
+   ====================================== */
+
+/* Container do Rodapé */
+.footer {
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+  padding: 2rem 0 1rem;
+  text-align: center;
+  color: var(--muted);
+  background: linear-gradient(180deg, var(--bg), #0b1220);
+}
+
+/* ======================================
+   8. FORMULÁRIOS
+   ====================================== */
+
+/* Grid de Formulário */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
+  max-width: 900px;
+}
+
+/* Campos de Entrada */
+.form-grid input {
+  padding: .6rem .7rem;
+  border-radius: .6rem;
+  border: 1px solid var(--border);
+  background: #0b1220;
+  color: var(--text);
+}
+
+.form-inline {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-top: .5rem;
+}
+
+.form-inline input {
+  padding: .45rem .6rem;
+  border-radius: .6rem;
+  border: 1px solid var(--border);
+  background: #0b1220;
+  color: var(--text);
+}
+
+.flex-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+}
+
+details summary {
+  cursor: pointer;
+  margin: .5rem 0;
+  color: var(--muted);
+}
+
+/* ======================================
+   9. SOFT SKILLS
+   ====================================== */
+
+/* Lista de Soft Skills */
+.softskills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  padding: 0;
+  list-style: none;
+  justify-content: flex-start;
+}
+
+/* Item de Soft Skill */
+.softskills li {
+  background: var(--gradient-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  color: var(--text);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  cursor: default;
+}
+
+/* Ícone da Soft Skill */
+.softskills li span {
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+/* Efeito Hover */
+.softskills li:hover {
+  background: var(--gradient-hover);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+/* Animação do Ícone no Hover */
+.softskills li:hover span {
+  transform: rotate(10deg) scale(1.2);
+}
+
+/* ======================================
+   10. ANIMAÇÕES
+   ====================================== */
+
+/* Animação de Flutuação */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Aplicação da Animação Float */
+.softskills li:nth-child(odd) {
+  animation: float 4s ease-in-out infinite;
+}
+
+.softskills li:nth-child(even) {
+  animation: float 4.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+/* Animação de Pulso */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ======================================
+   12. COMPETÊNCIAS AVANÇADAS
+   ====================================== */
+
+/* Lista de Competências com Ícones */
+.pill-list.icons.advanced {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: flex-start;
+}
+
+/* Item de Competência */
+.pill-list.icons.advanced .pill {
+  background: #0b1220;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Efeito Hover da Competência */
+.pill-list.icons.advanced .pill:hover {
+  background: linear-gradient(135deg, #16213d, #0f172a);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* Link da Competência */
+.pill-list.icons.advanced a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+/* ======================================
+   13. CÍRCULO DE ÍCONES
+   ====================================== */
+
+/* Container do Ícone */
+.icon-circle {
+  background: #1e293b;
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.6rem;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+/* Efeito Hover no Círculo */
+.pill-list.icons.advanced .pill:hover .icon-circle {
+  background: var(--primary);
+  transform: rotate(12deg) scale(1.1);
+}
+
+/* Ícone Dentro do Círculo */
+.icon-circle i {
+  font-size: 1.4rem;
+}
+
+/* ======================================
+   14. FOOTER COM CONTATO
+   ====================================== */
+
+/* Container Principal do Footer */
+.footer {
+  border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, #0f172a, #0b1220);
+  margin-top: 3rem;
+  padding: 2.5rem 1rem 1rem 1rem;
+  text-align: center;
+  color: var(--text);
+}
+
+/* Container Interno do Footer */
+.footer .container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Título da Seção de Contato */
+.contact-footer h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+/* Descrição do Contato */
+.contact-footer p {
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+
+/* Lista de Links do Footer */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.8rem;
+}
+
+/* Botões do Footer */
+.footer-links .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 0.7rem;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.25s ease;
+}
+
+/* Ícones dos Botões */
+.footer-links .btn i {
+  font-size: 1.2rem;
+}
+
+/* Efeito Hover dos Botões */
+.footer-links .btn:hover {
+  transform: translateY(-3px);
+  background: var(--primary);
+  color: #001018;
+}
+
+/* Efeito Hover dos Botões Outline */
+.footer-links .btn.outline:hover {
+  background: var(--primary);
+  color: #001018;
+  border-color: var(--primary);
+}
+
+/* Copyright */
+.copy {
+  font-size: 0.9rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+/* animação suave no hover */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.footer-links .btn:hover {
+  animation: pulse 0.5s ease-in-out;
+}
+
+/* ======== FOOTER FIXO AO FINAL ======== */
+html,
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+/* Animação e destaque dos cards da formação */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background: linear-gradient(145deg, #111827, #0b1220);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
+}
+
+.card h3 {
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+.card strong {
+  color: var(--primary);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.card:hover::before {
+  transform: translateX(100%);
+}
+
+.inst-link {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--primary);
+  transition: all 0.3s ease;
+}
+
+.inst-link:hover {
+  color: #00eaff;
+  border-bottom: 1px solid #00eaff;
+  text-shadow: 0 0 6px rgba(34, 211, 238, 0.5);
+}
+/* ======================================
+   15. SEÇÃO DE FORMAÇÃO
+   ====================================== */
+
+/* Container da Formação */
+.formacao {
+  background: radial-gradient(circle at top, rgba(34, 211, 238, 0.05), transparent 70%);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.04);
+  transition: all 0.4s ease;
+}
+
+/* Efeito Hover do Container */
+.formacao:hover {
+  box-shadow: 0 0 40px rgba(34, 211, 238, 0.08);
+}
+
+/* Título da Formação */
+.formacao h2 {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+/* Decoração do Título */
+.formacao h2::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary);
+  opacity: 0.4;
+  border-radius: 4px;
+}
+
+/* ======================================
+   16. TIMELINE DE FORMAÇÃO
+   ====================================== */
+
+/* Container da Timeline */
+.timeline {
+  position: relative;
+  margin: 2rem auto;
+  padding-left: 2rem;
+  max-width: 800px;
+  border-left: 2px solid rgba(34, 211, 238, 0.2);
+}
+
+/* Item da Timeline */
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  animation: fadeIn 0.6s ease;
+}
+
+/* Ponto da Timeline */
+.timeline-dot {
+  position: absolute;
+  left: -10px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.6);
+}
+
+/* Conteúdo do Item */
+.timeline-content {
+  background: #0b1220;
+  padding: 1rem 1.25rem;
+  border-radius: 0.8rem;
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito Hover do Conteúdo */
+.timeline-content:hover {
+  transform: translateX(5px);
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.1);
+}
+
+/* Título do Item */
+.timeline-content h3 {
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== LOGOS VISUAIS ===== */
+.inst-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 8px;
+  opacity: 0.9;
+  filter: grayscale(100%) brightness(1.3);
+  transition: all 0.3s ease;
+}
+
+.inst-link:hover .inst-logo {
+  filter: none;
+  transform: scale(1.05);
+}
+
+/* ===== FUNDO COM LOGO NO HOVER ===== */
+.timeline-content {
+  background: #0b1220;
+  padding: 1.2rem 1.4rem;
+  border-radius: 0.8rem;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-base);
+}
+
+.timeline-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: 200px;
+  background-repeat: no-repeat;
+  background-position: right 1rem bottom 0.5rem;
+  opacity: 0;
+  filter: grayscale(100%) brightness(0.8);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.timeline-content[data-inst]::before {
+  opacity: 0;
+}
+
+.timeline-content[data-inst="fatec"]::before {
+  background-image: url("/img/fatec.png");
+}
+
+.timeline-content[data-inst="etec"]::before {
+  background-image: url("/img/etec.png");
+}
+
+.timeline-content:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateX(6px);
+}
+
+.timeline-content:hover::before {
+  opacity: 0.15;
+  filter: grayscale(0%) brightness(2.5);
+}
+
+/* ======================================
+   17. SEÇÃO DE PROJETOS
+   ====================================== */
+
+/* Container de Projetos */
+.projetos {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Grid de Projetos */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card de Projeto */
+.project-card {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: var(--transition-base);
+  position: relative;
+}
+
+/* Efeito Hover do Card */
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+/* Cabeçalho do Projeto */
+.project-header h3 {
+  margin: 0;
+  color: var(--text);
+}
+
+/* Descrição do Projeto */
+.project-desc {
+  margin: 0.75rem 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Tecnologias do Projeto */
+.project-tech {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Links do Projeto */
+.project-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Detalhes do Projeto */
+.project-links details {
+  color: var(--muted);
+}
+
+/* Sumário dos Detalhes */
+.project-links summary {
+  cursor: pointer;
+}
+
+/* Botão de Link */
+.project-links a.btn {
+  font-size: 0.9rem;
+}
+
+/* formulário */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.form-grid input,
+.form-grid button {
+  padding: 0.75rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--border);
+  background: #0b1220;
+  color: var(--text);
+}
+
+.project-actions {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.project-actions summary {
+  cursor: pointer;
+  list-style: none;
+  margin-bottom: 0.5rem;
+}
+
+.project-actions summary::marker {
+  display: none;
+}
+
+.project-actions form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.project-actions input {
+  background: rgba(10, 15, 25, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.4rem;
+  padding: 0.5rem;
+  color: var(--text);
+}
+
+.btn.small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+.btn.danger {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn.danger:hover {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+/* ===== REFINAMENTO ESTÉTICO GERAL ===== */
+
+/* Introdução da seção de competências */
+.competencias-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.competencias-intro h2 {
+  font-size: 1.8rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.competencias-intro h2::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+.competencias-intro p {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* Animação sutil dos blocos de competências */
+.pill-list.icons.advanced .pill,
+.softskills li {
+  animation: fadeInUp 0.6s ease both;
+  animation-delay: calc(var(--i, 0) * 0.08s);
+}
+
+/* Hover melhorado para os cards */
+.pill-list.icons.advanced .pill:hover,
+.softskills li:hover {
+  background: linear-gradient(135deg, #16213d, #0f172a);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.25);
+  border-color: var(--primary);
+}
+
+/* Separador entre as seções de competências */
+.competencias-section+.competencias-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* Brilho suave no hover dos ícones */
+.icon-circle {
+  transition: all 0.3s ease;
+}
+
+.icon-circle:hover {
+  background: var(--primary);
+  color: #001018;
+  transform: rotate(10deg) scale(1.1);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.5);
+}
+
+.icon-circle i {
+  color: white;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+}
+
+/* ===== HERO INICIAL ===== */
+.hero-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  min-height: 80vh;
+  padding: 3rem 1.5rem;
+}
+
+/* Fade-in suave */
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 1000px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-home .avatar.destaque {
+  width: 180px;
+  height: 180px;
+  border-radius: 1rem;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.15);
+  object-fit: cover;
+}
+
+.hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-text h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.hero-text .local {
+  color: var(--muted);
+  margin: 0.4rem 0 1rem;
+}
+
+.hero-text .titulo-destaque {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+
+  display: inline-block;
+  border-right: 2px solid var(--primary);
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 2.6s steps(35, end) forwards, blink 0.7s step-end infinite alternate;
+}
+
+/* ajusta o ponto final do texto */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 32ch;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.hero-text .bio {
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+
+/* Animações globais */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* ======================================
+   11. RESPONSIVIDADE
+   ====================================== */
+
+/* Mobile (< 640px) */
+@media (max-width: 640px) {
+  /* Ajustes do Hero */
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ajustes da Navbar */
+  .navbar .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
